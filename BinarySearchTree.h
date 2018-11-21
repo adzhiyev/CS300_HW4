@@ -1,15 +1,36 @@
+/**
+ * CS300 Assignment 4 BinarySearchTree/Array UPC Scanner
+ * Purpose: To create a UPC Scanner with both a BST and Array Data Structures
+ * and to see the difference in time to search for a specific item.
+ *
+ * @author Daniyal Adzhiyev
+ * @version 1.0 11/21/2018
+ */
+
 #ifndef BINARYSEARCHTREE_H_
 #define BINARYSEARCHTREE_H_
+/**
+ * CS300 Assignment 4 BinarySearchTree/Array UPC Scanner
+ * Purpose: To create a UPC Scanner with both a BST and Array Data Structures
+ * and to see the difference in time to search for a specific item.
+ *
+ * @author Daniyal Adzhiyev
+ * @version 1.0 11/21/2018
+ */
 #include <iostream>
+
 using namespace std;
 
+//node structure for BST
 template <class T>
 struct node{
 	T data;
 	node<T>* left;
 	node<T>* right;
 };
-
+/*
+ *Template class for BST
+ */
 template <class T>
 class BinarySearchTree{
 
@@ -20,6 +41,7 @@ public:
 	void printPostOrder(){printPostOrder(root);}
 	int height(){return height(root);}
 	void insert(T& item){insert(root, item);}
+	//altered to return item in the BST Tree
 	T search(T& item){return search(root,item);}
 	T findMax(){return findMax(root);}
 	T findMin(T& e){return findMin(root,e);}
@@ -104,15 +126,11 @@ void BinarySearchTree<T>::insert(node<T>*& p, T& item){
 		p = new node<T>;
 		p->data = item;
 		p->left = p->right = NULL;
-		// cout<<"creating new node"<<endl;
 	}
 	else if(item < p->data){
 		insert(p->left, item);
-		//cout<<"inserting left"<<endl;
 	}else{
-		insert(p->right, item);
-		//cout<<"inserting right"<<endl;
-		
+		insert(p->right, item);		
 	}
 }
 
@@ -129,8 +147,7 @@ T BinarySearchTree<T>::search(node<T>* p, T& item){
 } 
 
 template <class T>
-T BinarySearchTree<T>::findMax(node<T>* p, T& e){
-	
+T BinarySearchTree<T>::findMax(node<T>* p, T& e){	
 	if (p==NULL)
 		return e;
 	else if(p->right == NULL)
